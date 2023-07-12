@@ -1,0 +1,41 @@
+<!-- index.html
+
+    <iframe src="{{ tableau_link }}" width="1000" height="600"></iframe>
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau Dashboard</title>
+    <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <p class="h1" style="color: brown; text-align: center; " >Tableau Story</p>
+    <div id="tableauViz"></div>
+
+    <script>
+        function initViz() {
+            var containerDiv = document.getElementById("tableauViz");
+            var url = "https://public.tableau.com/views/Wallmart_Sales_Story1/FinalStory?:language=en-US&:display_count=n&:origin=viz_share_link";  // Replace with your Tableau Server or Tableau Online URL
+            var options = {
+                hideTabs: true,
+                onFirstInteractive: function () {
+                    console.log("Tableau viz loaded");
+                }
+            };
+
+            var viz = new tableau.Viz(containerDiv, url, options);
+        }
+
+        function init() {
+            var script = document.createElement("script");
+            script.src = "https://public.tableau.com/javascripts/api/tableau-2.min.js";
+            script.onload = initViz;
+            document.getElementsByTagName("head")[0].appendChild(script);
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
